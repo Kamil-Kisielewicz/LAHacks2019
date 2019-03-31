@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600|Roboto+Slab:100,400');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:100,400');
 
 @font-face{
 	font-family: 'Axis';
@@ -30,14 +30,16 @@ button:active, button:hover, button {
 }
 
 #sidebar {
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Axios', sans-serif;
 	height: 100%;
 	width: 250px;
 	position: fixed;
 	z-index: 1;
 	top: 0;
 	left: 0;
-	background-color: rgba(255,192,79,1);
+	/*background-color: rgba(255,192,79,1);*/
+	background: rgb(255,151,0);
+	background: linear-gradient(0deg, rgba(255,190,100,1) 0%, rgba(255,192,79,1) 70%);
 	overflow-x: hidden;
 	padding: 25px;
 	padding-top: 50px;
@@ -55,7 +57,7 @@ header {
 	justify-content: space-between;
 	padding: 50px;
 	margin: 0;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Axios', sans-serif;
 	font-weight: 600;
 }
 
@@ -145,7 +147,7 @@ button#search-submit {
 	padding: 30px;
 }
 
-.security-card h2 {
+.security-card h1 {
 	font-family: 'Roboto Slab', serif;
 }
 
@@ -156,4 +158,43 @@ button#search-submit {
 .ticker {
 	font-size: 18px;
 	font-weight: 100;
+}
+
+#search-graph {
+	margin-top: -30px;
+}
+
+#action-block {
+	display: flex;
+	justify-content: flex-start;
+	margin-left: 50px;
+}
+
+#purchase input, #purchase button {
+	padding: 20px;
+	outline: none;
+	border: none;
+	font-family: 'Roboto Slab', serif;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	margin-top: 20px;
+	background: white;
+	min-width: 400px;
+}
+
+#purchase button {
+	min-width: 440px;
+	background: transparent;
+	color: rgba(255,192,79,1);
+	border: 1px solid rgba(255,192,79,1);
+	border-radius: 1px;
+}
+
+#requests {
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+#action-block h1 {
+	font-family: 'Roboto Slab', serif;
 }
