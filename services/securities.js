@@ -15,9 +15,10 @@ async function get_stock(ticker) {
 function set_table(data){
 	map = data.resultMap.RETURNS[0].returnsMap;
 
-	var formatted_stock_data = [];
+	var formatted_stock_data = [[], []];
 	for (var item in map){
-		formatted_stock_data.push({x: parseInt(map[item].asOfDate), y: parseFloat(map[item].level)});
+		formatted_stock_data[0].push(parseInt(map[item].asOfDate));
+		formatted_stock_data[1].push(parseFloat(map[item].level));
 	}
 	return formatted_stock_data;
 }
