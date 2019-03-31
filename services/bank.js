@@ -120,7 +120,6 @@ async function get_account_by_id(_id) {
 
     let value = await rp(options);
     return value;
-
 }
 
 function get_customer_balance_by_id(account) {
