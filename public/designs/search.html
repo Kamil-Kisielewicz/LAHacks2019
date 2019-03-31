@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vault</title>
+	<link rel="stylesheet" href="search.css" />
+	<link rel="stylesheet" href="animate.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<body>
+
+	<div class="animated slideInLeft" id="sidebar">
+		<center>
+			<div id="avatar"></div>
+			<div class="name">Maddy Wong</div>		
+		</center>
+		<br />
+		<nav id="profile-nav">
+			<a href="#">Find Securities</a>
+			<a href="#">Portfolio</a>
+			<a href="">Account</a>
+		</nav>
+	</div>
+
+	<div id="content" class="animated fadeIn">
+		<header>
+			<form method="post" action="/search" class="animated slideInDown">
+				<input type="text" placeholder="TICKER" name="search-ticker" id="search">
+				<button id="search-submit"><i class="fas fa-search"></i></button>
+			</form>
+			<div id="account-actions">
+				<nav id="actions">
+					<a href="#">Logout</a>
+				</nav>
+			</div>
+		</header>
+		<div class="card-row animated fadeIn">
+			<div class="security-card">
+				<h2>Alphabet Inc. Class C&nbsp;&nbsp;<span class="ticker">GOOG</span></h2>
+				<h4>Current Price: <i class="fas fa-dollar-sign fa-fw"></i>7,725</h4>
+				<canvas id="result-chart" width="1400" height="400"></canvas>
+			</div>
+		</div>
+
+		<div id="purchase">
+			
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+	<script>
+		// $(function() {
+		//   $("#kumar").click(function(){
+		//     $.ajax({url: "http://api.reimaginebanking.com/customers/5c9ef3c4322fa06b67794978?key=dcfcb29817e069b5834fe1fe4f746fab", type: "get", success: function(result){
+		//     	console.log(JSON.stringify(result));
+		//       $("#div1").html(result._id);
+		//     }});
+		//   });
+		// });
+		Chart.defaults.global.defaultFontColor = 'white';
+		Chart.defaults.global.defaultFontFamily = 'Roboto Slab';
+		Chart.defaults.global.tooltips.enabled = false;
+
+		var data = [  { x: 20020102, y: 1.0129391539096833 },
+					  { x: 20020103, y: 1.099816169279809 },
+					  { x: 20020104, y: 1.132173176939471 },
+					  { x: 20020109, y: 1.1015994043226949 },
+					  { x: 20020110, y: 1.0547834309692274 },
+					  { x: 20020111, y: 1.0538279806948803 },
+					  { x: 20020116, y: 0.9350279650063834 },
+					  { x: 20020117, y: 0.9975003600195106 },
+					  { x: 20020118, y: 1.0405141716948123 },
+					  { x: 20020123, y: 1.0297786137686789 },
+					  { x: 20020124, y: 1.1569535757955114 },
+					  { x: 20020125, y: 1.1924634932672427 },
+					  { x: 20020130, y: 1.1656287091092097 },
+					  { x: 20020131, y: 1.1899477532403795 },
+					  { x: 20020201, y: 1.1513727098757653 },
+					  { x: 20020206, y: 1.1273340591611494 },
+					  { x: 20020207, y: 1.1253316259856976 },
+					  { x: 20020208, y: 1.2534945065904994 },
+					  { x: 20020213, y: 1.291391085385563 },
+					  { x: 20020214, y: 1.3487219104383348 },
+					  { x: 20020215, y: 1.3030515765869253 },
+					  { x: 20020220, y: 1.298043634519163 },
+					  { x: 20020221, y: 1.3280911914361042 },
+					  { x: 20020222, y: 1.3090610303878565 },
+					  { x: 20020227, y: 1.2972521293709085 },
+					  { x: 20020228, y: 1.2817887196573707 },
+					  { x: 20020301, y: 1.3990595717702634 },
+					  { x: 20020306, y: 1.4305977961414904 },
+					  { x: 20020307, y: 1.368397429277507 },
+					  { x: 20020308, y: 1.4323497906462832 },
+					  { x: 20020313, y: 1.3822918307930445 },
+					  { x: 20020314, y: 1.271637588510261 },
+					  { x: 20020315, y: 1.2321181266021066 },
+					  { x: 20020320, y: 1.2186790627785704 },
+					  { x: 20020321, y: 1.274982028273158 },
+					  { x: 20020322, y: 1.3052388583503227 },
+					  { x: 20020327, y: 1.2541995553581275 },
+					  { x: 20020328, y: 1.2585914590326346 },
+					  { x: 20020329, y: 1.2585914590326346 },
+					  { x: 20020403, y: 1.2073557418550773 },
+					  { x: 20020404, y: 1.1958738444616934 },
+					  { x: 20020405, y: 1.1923498038643912 },
+					  { x: 20020410, y: 1.1818290034118593 },
+					  { x: 20020411, y: 1.1169506062342225 },
+					  { x: 20020412, y: 1.16692451532576 },
+					  { x: 20020417, y: 1.2343916790451943 },
+					  { x: 20020418, y: 1.187747728099648 },
+					  { x: 20020419, y: 1.210236756836998 },
+					  { x: 20020424, y: 1.445227456191791 },
+					  { x: 20020425, y: 1.4478098310744496 },
+					  { x: 20020426, y: 1.4555567919934038 },
+					  { x: 20020501, y: 1.4381145252164524 },
+					  { x: 20020502, y: 1.4232885053878808 },
+					  { x: 20020503, y: 1.399741269267067 },
+					  { x: 20020508, y: 1.5048746568068392 },
+					  { x: 20020509, y: 1.5404983244126382 },
+					  { x: 20020510, y: 1.471857497042234 },
+					  { x: 20020515, y: 1.5602788965467589 },
+					  { x: 20020516, y: 1.5344567034747163 },
+					  { x: 20020517, y: 1.499244703775759 },
+					  { x: 20020522, y: 1.4984535890405593 },
+					  { x: 20020523, y: 1.5543878397070137 },
+					  { x: 20020524, y: 1.5559862268015807 },
+					  { x: 20020529, y: 1.5437407617247627 },
+					  { x: 20020530, y: 1.4996569000189421 },
+					  { x: 20020531, y: 1.4882278202016073 },
+					  { x: 20020605, y: 1.4898842143141462 },
+					  { x: 20020606, y: 1.504791446661036 },
+					  { x: 20020607, y: 1.5387467356724276 },
+					  { x: 20020612, y: 1.5333602407941813 },
+					  { x: 20020613, y: 1.564781603830531 },
+					  { x: 20020614, y: 1.5100185380360385 },
+					  { x: 20020619, y: 1.4714236451442768 },
+					  { x: 20020620, y: 1.41111906935193 },
+					  { x: 20020621, y: 1.409510910463374 },
+					  { x: 20020626, y: 1.4563724206343984 },
+					  { x: 20020627, y: 1.4572912944478806 },
+					  { x: 20020628, y: 1.4931356958535917 },
+					  { x: 20020703, y: 1.5973982044503623 },
+					  { x: 20020705, y: 1.7050011802546567 },
+					  { x: 20020710, y: 1.6350519302497557 },
+					  { x: 20020711, y: 1.6995363786610962 },
+					  { x: 20020712, y: 1.6864209131754313 },
+					  { x: 20020717, y: 1.672962677578194 },
+					  { x: 20020718, y: 1.609812024408962 },
+					  { x: 20020719, y: 1.582895356290707 },
+					  { x: 20020724, y: 1.5339395136544334 },
+					  { x: 20020725, y: 1.3587862507585469 },
+					  { x: 20020726, y: 1.4066542624097933 },
+					  { x: 20020731, y: 1.3770259523606465 },
+					  { x: 20020801, y: 1.3485499443052036 },
+					  { x: 20020802, y: 1.3180740532130577 },
+					  { x: 20020807, y: 1.3046438552347857 },
+					  { x: 20020808, y: 1.3334229934352144 },
+					  { x: 20020809, y: 1.3679579039047123 },
+					  { x: 20020814, y: 1.3659937990566036 },
+					  { x: 20020815, y: 1.4357179277336085 },
+					  { x: 20020816, y: 1.4632148333560557 },
+					  { x: 20020821, y: 1.4135828658807803 },
+					  { x: 20020822, y: 1.4457517724645876 }  ]
+
+		var nasdaq_chart = $('#result-chart');
+		var nasdaq_line = new Chart(nasdaq_chart, {
+		    type: 'line',
+		    data: {
+	            labels: ['Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date', 'Date'],
+	            datasets: [{
+	                data: data,
+	                borderColor: 'rgba(255,192,79,1)',
+	                borderWidth: 2
+	            }]
+	        },
+	        options: {
+	        	legend: {
+	        		display: false
+	        	},
+	        	elements: {
+                    point:{
+                        radius: 0,
+                        hoverRadius: 0
+                    }
+                }
+	        }
+		});
+	</script>
+</body>
+</html>

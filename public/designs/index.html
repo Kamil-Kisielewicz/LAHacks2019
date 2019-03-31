@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vault</title>
+	<link rel="stylesheet" href="styles.css" />
+	<link rel="stylesheet" href="animate.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<body>
+
+	<div class="animated slideInLeft" id="sidebar">
+		<center>
+			<div id="avatar"></div>
+			<div class="name">Maddy Wong</div>		
+		</center>
+		<br />
+		<nav id="profile-nav">
+			<a href="#">Find Securities</a>
+			<a href="#">Portfolio</a>
+			<a href="">Account</a>
+		</nav>
+	</div>
+
+	<div id="content" class="animated fadeIn">
+		<header>
+			<form method="post" action="/search" class="animated slideInDown">
+				<input type="text" placeholder="TICKER" name="search-ticker" id="search">
+				<button id="search-submit"><i class="fas fa-search"></i></button>
+			</form>
+
+			<div id="account-actions">
+				<nav id="actions">
+					<a href="#">Logout</a>
+				</nav>
+				<!--  -->
+			</div>
+		</header>
+		<div class="card-row animated slideInLeft">
+			<div class="security-card">
+				<h2>Standard and Poors 500&nbsp;&nbsp;<span class="ticker">GSPC</span></h2>
+				<h4>Current Price: <i class="fas fa-dollar-sign fa-fw"></i>2,834</h4>
+				<canvas id="snp-chart" width="600" height="250"></canvas>
+			</div>
+			<div class="security-card">
+				<h2>NASDAQ&nbsp;&nbsp;<span class="ticker">IXIC</span></h2>
+				<h4>Current Price: <i class="fas fa-dollar-sign fa-fw"></i>7,725</h4>
+				<canvas id="nasdaq-chart" width="600" height="250"></canvas>
+			</div>
+		</div>
+		<div class="card-row animated slideInLeft">
+			<div class="security-card">
+				<h2>Vanguard&nbsp;&nbsp;<span class="ticker">VFINX</span></h2>
+				<h4>Current Price: <i class="fas fa-dollar-sign fa-fw"></i>261</h4>
+				<canvas id="van-chart" width="600" height="250"></canvas>
+			</div>
+			<div class="security-card">
+				<h2>Dow Jones&nbsp;&nbsp;<span class="ticker">DJI</span></h2>
+				<h4>Current Price: <i class="fas fa-dollar-sign fa-fw"></i>25,928</h4>
+				<canvas id="dow-chart" width="600" height="250"></canvas>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+	<script>
+		// $(function() {
+		//   $("#kumar").click(function(){
+		//     $.ajax({url: "http://api.reimaginebanking.com/customers/5c9ef3c4322fa06b67794978?key=dcfcb29817e069b5834fe1fe4f746fab", type: "get", success: function(result){
+		//     	console.log(JSON.stringify(result));
+		//       $("#div1").html(result._id);
+		//     }});
+		//   });
+		// });
+		Chart.defaults.global.defaultFontColor = 'white';
+		Chart.defaults.global.defaultFontFamily = 'Roboto Slab';
+		Chart.defaults.global.tooltips.enabled = false;
+
+		var nasdaq_chart = $('#nasdaq-chart');
+		var nasdaq_line = new Chart(nasdaq_chart, {
+		    type: 'line',
+		    data: {
+	            labels: ['3/26', '3/27', '3/28', '3/29', '3/30'],
+	            datasets: [{
+	                data: [7708, 7691, 7642, 7718, 7725],
+	                borderColor: 'rgba(255,192,79,1)',
+	                borderWidth: 2
+	            }]
+	        },
+	        options: {
+	        	legend: {
+	        		display: false
+	        	}
+	        }
+		});
+
+		var snp_chart = $('#snp-chart');
+		var snp_line = new Chart(snp_chart, {
+		    type: 'line',
+		    data: {
+	            labels: ['3/26', '3/27', '3/28', '3/29', '3/30'],
+	            datasets: [{
+	                data: [2796, 2798, 2819, 2828, 2834],
+	                borderColor: 'rgba(255,192,79,1)',
+	                borderWidth: 2
+	            }]
+	        },
+	        options: {
+	        	legend: {
+	        		display: false
+	        	}
+	        }
+		});
+
+		var van_chart = $('#van-chart');
+		var van_line = new Chart(van_chart, {
+		    type: 'line',
+		    data: {
+	            labels: ['3/26', '3/27', '3/28', '3/29', '3/30'],
+	            datasets: [{
+	                data: [258, 260, 258, 259, 261],
+	                borderColor: 'rgba(255,192,79,1)',
+	                borderWidth: 2
+	            }]
+	        },
+	        options: {
+	        	legend: {
+	        		display: false
+	        	}
+	        }
+		});
+
+		var dow_chart = $('#dow-chart');
+		var dow_line = new Chart(dow_chart, {
+		    type: 'line',
+		    data: {
+	            labels: ['3/26', '3/27', '3/28', '3/29', '3/30'],
+	            datasets: [{
+	                data: [25490, 25519, 25693, 25827, 25928],
+	                borderColor: 'rgba(255,192,79,1)',
+	                borderWidth: 2
+	            }]
+	        },
+	        options: {
+	        	legend: {
+	        		display: false
+	        	}
+	        }
+		});
+
+	</script>
+</body>
+</html>
