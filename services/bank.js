@@ -9,6 +9,20 @@ var base_bank_url = 'http://api.reimaginebanking.com/'
 var bank_key = '?key=' + process.env.CAPITAL_ONE_API_KEY
 var merchant_id = "5ca061b46759394351bee725";
 
+var base_stock_url = 'https://cloud.iexapis.com/beta/stock/';
+var stock_key = '/quote?token=pk_632688f3abc045a19e29197fb908669a';
+
+async function stock_info(ticker){
+    var stock_info_uri = base_stock_url + ticker + stock_key;
+
+    var options = {
+        uri: stock_info_uri,
+        json: true
+    };
+
+    let value = await rp(options);
+    return value;
+}
 
 async function get_customer_by_id(customer_id) {
     var customer;

@@ -9,6 +9,20 @@ var base_bank_url = 'http://api.reimaginebanking.com/'
 var bank_key = '?key=' + process.env.CAPITAL_ONE_API_KEY
 var merchant_id = "5ca061b46759394351bee725";
 
+var base_stock_url = 'https://cloud.iexapis.com/beta/stock/';
+var stock_key = '/quote?token=pk_632688f3abc045a19e29197fb908669a';
+
+async function stock_info(ticker){
+    var stock_info_uri = base_stock_url + ticker + stock_key;
+
+    var options = {
+        uri: stock_info_uri,
+        json: true
+    };
+
+    let value = await rp(options);
+    return value;
+}
 
 async function get_customer_by_id(customer_id) {
     var customer;
@@ -24,8 +38,6 @@ async function get_customer_by_id(customer_id) {
     return value;
 }
 
-//creates a customer
-//done
 async function create_new_customer(first_name, last_name) {
     var new_customer;
     fin_type = 'customers';
@@ -149,7 +161,7 @@ async function create_deposit(account_id, deposit_amount){
         body: {
             "medium": "balance",
             "amount": deposit_amount
-        }
+        },
         json: true    
     }
     
@@ -158,15 +170,22 @@ async function create_deposit(account_id, deposit_amount){
 }
 
 async function run() {
-    let account = await get_account_by_id("5ca0a82e6759394351bee740");
-    var old_balance = get_customer_balance_by_id(account);
-    let deposit = create_deposit("5ca0a82e6759394351bee740", 100);
-    var new_balance_lol = get_customer_balance_by_id(account);
+    // let account = await get_account_by_id("5ca0a82e6759394351bee740");
+    // var old_balance = get_customer_balance_by_id(account);
+    // console.log(old_balance);
+    // let deposit = create_deposit("5ca0a82e6759394351bee740", 100);
+    // var new_balance_lol = get_customer_balance_by_id(account);
+    // console.log(new_balance_lol);
     // let accounts = await get_accounts();
     // let created_customer = await create_new_customer("kamil","kisielewicz");
     // let created_account = await create_new_customer_account("5ca017756759394351bee70d", "Kam's aCC", 1000, "1234569283940145");
     // let transaction = await perform_transaction(100, "5c9ef3c6322fa06b6779497b");
     
+    let ape = await stock_info("AMZN");
+    console.log(ape);
+
     // console.log(transaction);
 }
 run();
+
+//write method which 
