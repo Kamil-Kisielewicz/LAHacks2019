@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600|Roboto+Slab:100,400');
+
+@font-face{
+	font-family: 'Axis';
+	font-weight: bold;
+	src: url('AXIS.otf');
+}
+
+*:focus {
+	outline: none;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background: linear-gradient(90deg, rgba(42,54,59,1) 0%, rgba(25,25,25,0.8) 71%);
+	background-size: cover;
+	/*background-repeat: no-repeat;*/
+	min-height: 100%;
+	width: 100%;
+	color: #F1F2EC;
+}
+
+a:link, a:hover, a:active, a:visited {
+	text-decoration: none;
+}
+
+button:active, button:hover, button {
+	border: none;
+}
+
+#sidebar {
+	font-family: 'Montserrat', sans-serif;
+	height: 100%;
+	width: 250px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: rgba(255,192,79,1);
+	overflow-x: hidden;
+	padding: 25px;
+	padding-top: 50px;
+	color: #2A363B;
+}
+
+#content {
+	margin: 0;
+	margin-left:300px;
+}
+
+header {
+	/*background: #2A363B;*/
+	display: flex;
+	justify-content: space-between;
+	padding: 50px;
+	margin: 0;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+}
+
+header nav {
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+header nav a {
+	margin-right: 40px;
+	color: #F1F2EC;
+}
+
+#profile {
+	display: flex;
+	justify-content: space-between;
+}
+
+#avatar {
+	text-align: center;
+	/*display: inline-block;*/
+	height: 150px;
+	width: 150px;
+	background: url('avatar.jpg');
+	background-size: cover;
+	background-position: center center;
+	border-radius: 100%;
+}
+
+.name {
+	margin-top: 20px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	/*font-weight: 400;*/
+	font-family: 'Axis';
+}
+
+#actions {
+	margin-top: 25px;
+}
+
+#actions a {
+	color: #ffc04f;
+}
+
+#search {
+	width: 700px;
+	padding: 20px;
+	padding-right: 70px;
+	outline: none;
+	border: none;
+	font-family: 'Roboto Slab', serif;
+	font-size: 20px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+button#search-submit {
+	margin-left: -70px;
+	background: white;
+	padding: 20px;
+	font-size: 20px;
+	color: #2A363B;
+	cursor: pointer;
+}
+
+#profile-nav a{
+	padding-left: 20px;
+	margin-top: 20px;
+	display: block;
+	font-family: 'Axis';
+}
+
+#profile-nav a:link, a:visited, a:hover {
+	color: #2a363b;
+}
+
+.card-row {
+	margin: 50px;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.security-card {
+	color: white;
+	width: auto;
+	padding: 30px;
+}
+
+.security-card h2 {
+	font-family: 'Roboto Slab', serif;
+}
+
+.security-card h4 {
+	font-family: 'Axis';
+}
+
+.ticker {
+	font-size: 18px;
+	font-weight: 100;
+}
