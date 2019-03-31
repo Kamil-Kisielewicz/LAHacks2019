@@ -1,4 +1,4 @@
-
+//not in use
 
 var config = {
     apiKey: PROCESS.ENV.FIREBASE_API_KEY,

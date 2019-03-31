@@ -24,6 +24,19 @@ async function get_customer_by_id(customer_id) {
     return value;
 }
 
+async function get_customers() {
+    fin_type = 'customers/';
+    var get_customer_by_id_url = base_bank_url + fin_type + bank_key; //could potentially move these as globals 
+
+    var options = {
+        uri: get_customer_by_id_url,
+        json: true
+    };
+
+    let value = await rp(options);
+    return value;
+}
+
 //creates a customer
 //done
 async function create_new_customer(first_name, last_name) {
@@ -54,7 +67,6 @@ async function create_new_customer(first_name, last_name) {
 
 
 async function create_new_customer_account(_id, account_nickname, init_balance, account_number) {
-    var new_customer_account;
     fin_type = "customers/" + _id + "/accounts";
     var create_new_customer_account_url = base_bank_url + fin_type + bank_key;
 
@@ -138,15 +150,33 @@ async function get_accounts() {
     let result = await rp(options);
     return result;
 }
+//Note: must have correct parameters
+module.exports.getCustomer = get_customer_by_id;
+
+module.exports.newCustomer = create_new_customer;
+
+module.exports.makeAccount = create_new_customer_account;
+
+module.exports.deleteAcc = delete_customer_account;
+
+module.exports.performTransaction = perform_transaction;
+
+module.exports.accountID = get_account_by_id;
+
+module.exports.balance = get_customer_balance_by_id;
+
+module.exports.accounts = get_accounts;
 
 async function run() {
-    let account = await get_account_by_id("5c9ef3c6322fa06b6779497b");
-    var balance = get_customer_balance_by_id(account);
-    let accounts = await get_accounts();
-    let created_customer = await create_new_customer("kamil","kisielewicz");
-    let created_account = await create_new_customer_account("5ca017756759394351bee70d", "Kam's aCC", 1000, "1234569283940145");
-    let transaction = await perform_transaction(100, "5c9ef3c6322fa06b6779497b");
-    
-    console.log(transaction);
+    // let account = await get_account_by_id("5c9ef3c6322fa06b6779497b");
+    // var balance = get_customer_balance_by_id(account);
+    // let accounts = await get_accounts();
+    // let created_customer = await create_new_customer("kamil","kisielewicz");
+    // let created_account = await create_new_customer_account("5ca0a6276759394351bee73c", "Checkings", 100000, "1234569283940145");
+    // let transaction = await perform_transaction(100, "5c9ef3c6322fa06b6779497b");
+    // let maddy_success = await create_new_customer("Maddy", "Wong")
+    // let customer_success = await get_customers();
+
+    // console.log(created_account);
 }
-run();
+// run();
