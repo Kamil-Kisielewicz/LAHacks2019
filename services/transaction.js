@@ -26,7 +26,7 @@ console.log(customer._id);
 //console.log("2");
 //writeFunction updates the request database and Maddy's portfolio (after performing the transaction of purchasing a stock)
 async function writeRequest(cost, ticker, equity, shares) {
-	let request_success = await firebase.database().ref('request/').push({
+	let request_success = await firebase.database().ref('requests/').push({
 	  	userID: maddy_id,
 	    accID: maddy_acc_id,
 	    cost: cost,
@@ -48,7 +48,7 @@ async function writeRequest(cost, ticker, equity, shares) {
 }
 
 async function run() {
-	let result = await writeRequest(100, "GOOG", 0.51, 1);
+	let result = await writeRequest(100, "AAPL", 0.51, 1);
 	console.log(result);
 }
 run();
